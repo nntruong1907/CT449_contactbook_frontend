@@ -30,7 +30,7 @@
             <ErrorMessage name="address" class="error-feedback" />
         </div>
         <div class="form-group">
-            <label for="name">Điện thoại</label>
+            <label for="phone">Điện thoại</label>
             <Field
                 name="phone"
                 type="tel"
@@ -55,7 +55,7 @@
             <button 
                 v-if="contactLocal._id"
                 type="button"
-                class="ml-2 btn-danger"
+                class="ml-2 btn btn-danger"
                 @click="deleteContact">
                     Xóa
             </button>
@@ -65,8 +65,7 @@
 
 <script>
 import * as yup from "yup";
-import { Form, Firld, ErrorMessage } from "vee-validate";
-
+import { Form, Field, ErrorMessage } from "vee-validate";
 export default {
     components: {
         Form,
@@ -88,7 +87,8 @@ export default {
                 .string()
                 .email("E-mail không đúng.")
                 .max(50, "E-mail tối đa 50 ký tự."),
-            address: yup
+            address: yup.string().max(100, "Địa chỉ tối đa 100 ký tự."),
+            phone: yup
                 .string()
                 .matches(
                     /((09|03|07|08|05)+([0-9]{8})\b)/g,
@@ -103,6 +103,7 @@ export default {
         };
     },
     methods: {
+
         submitContact() {
             this.$emit("submit:contact", this.contactLocal);
         },
@@ -114,5 +115,5 @@ export default {
 </script>
 
 <style scoped>
-@import "@/assets/form.css"
+@import "@/assets/form.css";
 </style>
