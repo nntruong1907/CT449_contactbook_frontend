@@ -4,7 +4,6 @@
         <ContactForm :contact="contact" @submit:contact="updateContact" @delete:contact="deleteContact" />
         <p>{{ message }}</p>
     </div>
-
 </template>
 
 <script>
@@ -63,7 +62,7 @@ export default {
             }
         },
     },
-    
+
     created() {
         this.getContact(this.id);
         this.message = "";
